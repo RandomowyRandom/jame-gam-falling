@@ -5350,6 +5350,9 @@ GameObject:
   - component: {fileID: 531057789}
   - component: {fileID: 531057792}
   - component: {fileID: 531057791}
+  - component: {fileID: 531057794}
+  - component: {fileID: 531057793}
+  - component: {fileID: 531057795}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -5555,6 +5558,77 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27bdf76b279747f99d642070972f0925, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &531057793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531057785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b49e5dbc8094611a51713f2a9b2bb66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  _onCollisionEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 531057794}
+        m_TargetAssemblyTypeName: Collectables.CollectableEffectHandler, Assembly-CSharp
+        m_MethodName: OnCollectableEnter
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onCollisionExit:
+    m_PersistentCalls:
+      m_Calls: []
+  _onCollisionStay:
+    m_PersistentCalls:
+      m_Calls: []
+  _includeTriggers: 1
+--- !u!114 &531057794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531057785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a12e07c60c224b9bb123840df3db0569, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!58 &531057795
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 531057785}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.4
 --- !u!1 &546940674
 GameObject:
   m_ObjectHideFlags: 0

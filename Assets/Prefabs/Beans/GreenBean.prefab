@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8874383080842450448}
   - component: {fileID: 381058146513443315}
   - component: {fileID: 5991192625329922087}
+  - component: {fileID: 2950074242207253658}
   m_Layer: 0
   m_Name: GreenBean
   m_TagString: Untagged
@@ -129,3 +130,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeToDestroy: 18
+--- !u!114 &2950074242207253658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8873275732369785029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b4c24daabf746219c3897f001a95301, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 381058146513443315}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: _effects
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[Collectables.Abstraction.ICollectableEffect,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 1|Collectables.Effects.RestoreStaminaCollectableEffect, Assembly-CSharp
+    - Name: _staminaAmount
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 2|Collectables.Effects.DestroySelfCollectableEffect, Assembly-CSharp
+    - Name: _collider2D
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4373688203783412600}
   - component: {fileID: 5809769269245437791}
   - component: {fileID: 1813314760891195475}
+  - component: {fileID: -3720754170858546233}
   m_Layer: 0
   m_Name: BlueBean
   m_TagString: Untagged
@@ -129,3 +130,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeToDestroy: 18
+--- !u!114 &-3720754170858546233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8756402410078656532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b4c24daabf746219c3897f001a95301, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: _effects
+      Entry: 6
+      Data: 
