@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 namespace Player
 {
     [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(SpriteRenderer))]
     public class PlayerMovement: SerializedMonoBehaviour
     {
         [SerializeField]
@@ -18,12 +19,19 @@ namespace Player
         private float _movementSpeed = 1f;
         
         private Rigidbody2D _rigidbody2D;
+        private SpriteRenderer _spriteRenderer;
         
         private Vector2 _movement;
 
         private void Awake()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+        }
+
+        private void Update()
+        {
+            HandlePlayerRotation();
         }
 
         private void FixedUpdate()
@@ -47,9 +55,13 @@ namespace Player
                 Dash();
         }
 
+        private void HandlePlayerRotation()
+        {
+            _spriteRenderer.flipX = _movement.x < 0;
+        }
+        
         private void Dash()
         {
-            // read the movement input and dash in that direction, rounded to the nearest 45 degrees
             var roundedMovement = new Vector2(Mathf.Round(_movement.x), Mathf.Round(_movement.y));
             
             if (roundedMovement == Vector2.zero)
