@@ -1,4 +1,5 @@
 ﻿using System;
+using Player.Abstraction;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -21,12 +22,19 @@ namespace Player
         private Rigidbody2D _rigidbody2D;
         private SpriteRenderer _spriteRenderer;
         
+        private IPlayerStamina _playerStamina;
+        
         private Vector2 _movement;
 
         private void Awake()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
+        }
+
+        private void Start()
+        {
+            _playerStamina = ServiceLocator.ServiceLocator.Instance.Get<IPlayerStamina>();
         }
 
         private void Update()
@@ -51,8 +59,13 @@ namespace Player
         
         public void OnDash(InputAction.CallbackContext context)
         {
-            if (context.performed)
-                Dash();
+            if (!context.performed) 
+                return;
+            
+            var result = TryDash();
+            
+            if (result)
+                _playerStamina.DrainStamina();
         }
 
         private void HandlePlayerRotation()
@@ -60,17 +73,23 @@ namespace Player
             _spriteRenderer.flipX = _movement.x < 0;
         }
         
-        private void Dash()
+        private bool TryDash()
         {
-            var roundedMovement = new Vector2(Mathf.Round(_movement.x), Mathf.Round(_movement.y));
+            var hasEnoughStamina = _playerStamina.CurrentStamina > 0;
+
+            if (!hasEnoughStamina)
+                return false;
             
+            var roundedMovement = new Vector2(Mathf.Round(_movement.x), Mathf.Round(_movement.y));
+
             if (roundedMovement == Vector2.zero)
-                return;
+                return false;
             
             var dashDirection = roundedMovement.normalized;
             var dashDistance = 1f;
             
             _rigidbody2D.AddForce(dashDirection * dashDistance * _dashForce, ForceMode2D.Impulse);
+            return true;
         }
 
         private void LerpToFixedPosition()
