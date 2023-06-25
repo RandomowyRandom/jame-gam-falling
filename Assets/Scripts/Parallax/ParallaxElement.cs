@@ -6,21 +6,25 @@ namespace Parallax
     public class ParallaxElement: MonoBehaviour
     {
         [SerializeField]
-        private float _scrollSpeed = 1f;
+        private float _maxY = 10f;
         
         [SerializeField]
-        private SpriteRenderer _spriteRenderer;
+        private float _minY = -10f;
+        
+        [SerializeField]
+        private float _speed = 1f;
+        
+        public bool IsMoving { get; set; }
 
-        public bool IsMoving { get; set; } = true;
-        
-        private const float START_HEIGHT = 25f;
-        
         private void FixedUpdate()
         {
             if(!IsMoving)
                 return;
             
-            _spriteRenderer.size = new Vector2( _spriteRenderer.size.x, START_HEIGHT + Time.time * _scrollSpeed);
+            transform.position += Vector3.up * (_speed * Time.fixedDeltaTime);
+            
+            if (transform.position.y > _maxY)
+                transform.position = new Vector3(transform.position.x, _minY, transform.position.z);
         }
     }
 }
