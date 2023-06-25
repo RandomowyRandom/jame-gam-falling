@@ -9,10 +9,14 @@ namespace Parallax
     {
         [SerializeField]
         private List<ParallaxElement> _parallaxElements;
+        
+        [SerializeField]
+        private ParticleSystem _fallingParticles;
 
         private void Awake()
         {
             ServiceLocator.ServiceLocator.Instance.Register<IParallaxController>(this);
+            SetState(false);
         }
 
         private void OnDestroy()
@@ -24,6 +28,11 @@ namespace Parallax
         {
             _parallaxElements.ForEach(element => 
                 element.IsMoving = isMoving);
+            
+            if (isMoving)
+                _fallingParticles.Play();
+            else
+                _fallingParticles.Stop();
         }
     }
 }

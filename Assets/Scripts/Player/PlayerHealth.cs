@@ -1,4 +1,5 @@
 ﻿using System;
+using Enemy;
 using JetBrains.Annotations;
 using Player.Abstraction;
 using QFSW.QC;
@@ -39,6 +40,19 @@ namespace Player
             OnHealthChanged?.Invoke(CurrentHealth);
         }
 
+        public void OnDamageSourceEnter(GameObject collision)
+        {
+            var damageSource = collision.GetComponent<DamageSource>();
+
+            if (damageSource == null)
+                return;
+            
+            TakeDamage((int) damageSource.Damage);
+            
+            if(damageSource.DestroyOnCollision)
+                Destroy(collision);
+        }
+        
         #region QC
 
         [Command("take-damage")] [UsedImplicitly]

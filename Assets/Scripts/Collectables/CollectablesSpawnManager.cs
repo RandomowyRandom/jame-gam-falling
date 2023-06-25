@@ -35,7 +35,6 @@ namespace Collectables
 
         private void Start()
         {
-            SetSpawningState(true);
         }
 
         private void OnDestroy()

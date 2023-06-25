@@ -8,7 +8,7 @@ namespace Player
 {
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(SpriteRenderer))]
-    public class PlayerMovement: SerializedMonoBehaviour
+    public class PlayerMovement: SerializedMonoBehaviour, IPlayerMovement
     {
         [SerializeField]
         private float _fixedYPosition = .7f;
@@ -30,6 +30,8 @@ namespace Player
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
+            
+            ServiceLocator.ServiceLocator.Instance.Register<IPlayerMovement>(this);
         }
 
         private void Start()
@@ -50,6 +52,16 @@ namespace Player
             
             if (!isPlayerAtFixedYPosition)
                 LerpToFixedPosition();
+        }
+
+        private void OnDestroy()
+        {
+            ServiceLocator.ServiceLocator.Instance.Deregister<IPlayerMovement>();
+        }
+        
+        public void SetMovementLock(bool isLocked)
+        {
+            enabled = !isLocked;
         }
 
         public void OnMove(InputAction.CallbackContext context)
@@ -99,5 +111,6 @@ namespace Player
             transform.position = Vector3.Lerp(transform.position,
                 new Vector3(transform.position.x, _fixedYPosition, transform.position.z), lerpTime);
         }
+
     }
 }
