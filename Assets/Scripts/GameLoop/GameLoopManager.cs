@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Collectables.Abstraction;
+using Enemy.Abstraction;
 using GameLoop.Abstraction;
 using Parallax.Abstraction;
 using Player.Abstraction;
@@ -25,7 +26,8 @@ namespace GameLoop
         private IParallaxController _parallaxController;
         private ICollectablesSpawnManager _collectablesSpawnManager;
         private IPlayerMovement _playerMovement;
-        
+        private IEnemySpawnerManager _enemySpawnerManager;
+
         private PlayerShooter _playerShooter;
 
         private void Awake()
@@ -38,6 +40,7 @@ namespace GameLoop
             _parallaxController = ServiceLocator.ServiceLocator.Instance.Get<IParallaxController>();
             _collectablesSpawnManager = ServiceLocator.ServiceLocator.Instance.Get<ICollectablesSpawnManager>();
             _playerMovement = ServiceLocator.ServiceLocator.Instance.Get<IPlayerMovement>();
+            _enemySpawnerManager = ServiceLocator.ServiceLocator.Instance.Get<IEnemySpawnerManager>();
             _playerShooter = _playerSpriteRenderer.GetComponent<PlayerShooter>();
             
             OnBeforeGameStart();
@@ -57,6 +60,7 @@ namespace GameLoop
             _parallaxController.SetState(false);
             _collectablesSpawnManager.SetSpawningState(false);
             _playerMovement.SetMovementLock(true);
+            _enemySpawnerManager.SetSpawningState(false);
         }
         
         [Button]
@@ -68,6 +72,7 @@ namespace GameLoop
             _parallaxController.SetState(true);
             _collectablesSpawnManager.SetSpawningState(true);
             _playerMovement.SetMovementLock(false);
+            _enemySpawnerManager.SetSpawningState(true);
             
             _objectsToDisableOnStart.ForEach(obj => obj.SetActive(false));
             _objectsToEnableOnStart.ForEach(obj => obj.SetActive(true));

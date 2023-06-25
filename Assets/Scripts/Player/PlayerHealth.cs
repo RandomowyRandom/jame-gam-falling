@@ -10,6 +10,7 @@ namespace Player
     public class PlayerHealth: MonoBehaviour, IPlayerHealth
     {
         public event Action<int> OnHealthChanged;
+        public event Action OnPlayerDeath;
 
         public int CurrentHealth { get; private set; }
 
@@ -30,6 +31,9 @@ namespace Player
             CurrentHealth = Mathf.Clamp(CurrentHealth, 0, 3);
             
             OnHealthChanged?.Invoke(CurrentHealth);
+            
+            if(CurrentHealth == 0)
+                OnPlayerDeath?.Invoke();
         }
 
         public void Heal(int health = 1)
