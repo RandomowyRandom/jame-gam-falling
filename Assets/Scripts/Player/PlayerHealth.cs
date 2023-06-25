@@ -12,7 +12,10 @@ namespace Player
         public event Action<int, PlayerHealthChangeType> OnHealthChanged;
         public event Action OnPlayerDeath;
 
+        private const float INVINCIBILITY_TIME = 1f;
         public int CurrentHealth { get; private set; }
+        
+        private float _invincibilityTimer;
 
         private void Awake()
         {
@@ -25,12 +28,22 @@ namespace Player
             ServiceLocator.ServiceLocator.Instance.Deregister<IPlayerHealth>();
         }
 
+        private void Update()
+        {
+            _invincibilityTimer -= Time.deltaTime;
+        }
+
         public void TakeDamage(int damage = 1)
         {
+            if (_invincibilityTimer > 0)
+                return;
+            
             CurrentHealth -= damage;
             CurrentHealth = Mathf.Clamp(CurrentHealth, 0, 3);
             
             OnHealthChanged?.Invoke(CurrentHealth, PlayerHealthChangeType.Damage);
+            
+            _invincibilityTimer = INVINCIBILITY_TIME;
             
             if(CurrentHealth == 0)
                 OnPlayerDeath?.Invoke();
