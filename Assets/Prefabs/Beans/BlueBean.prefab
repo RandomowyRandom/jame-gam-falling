@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5809769269245437791}
   - component: {fileID: 1813314760891195475}
   - component: {fileID: -3720754170858546233}
+  - component: {fileID: 9071222641716293813}
   m_Layer: 0
   m_Name: BlueBean
   m_TagString: Untagged
@@ -183,3 +184,23 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+--- !u!95 &9071222641716293813
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8756402410078656532}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d7be4a30f7fa80f40b0af568fbfa490b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0

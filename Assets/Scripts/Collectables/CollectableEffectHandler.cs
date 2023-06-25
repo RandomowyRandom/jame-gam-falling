@@ -11,6 +11,11 @@ namespace Collectables
             if (collectableBehaviour == null)
                 return;
             
+            var collectableAnimator = collision.GetComponent<Animator>();
+            
+            if(collectableAnimator != null)
+                Destroy(collectableAnimator);
+            
             collectableBehaviour.ApplyEffects(this);
         }
     }
