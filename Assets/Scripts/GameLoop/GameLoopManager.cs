@@ -37,6 +37,15 @@ namespace GameLoop
         [SerializeField]
         private Volume _globalVolume;
         
+        [SerializeField]
+        private AudioSource _gameMusic;
+        
+        [SerializeField]
+        private AudioClip _gameplayMusic;
+        
+        [SerializeField]
+        private AudioClip _menuMusic;
+        
         private IParallaxController _parallaxController;
         private ICollectablesSpawnManager _collectablesSpawnManager;
         private IPlayerMovement _playerMovement;
@@ -76,6 +85,9 @@ namespace GameLoop
         {
             Time.timeScale = 1;
             
+            _gameMusic.clip = _menuMusic;
+            _gameMusic.Play();
+            
             _playerSpriteRenderer.enabled = false;
             _playerShooter.enabled = false;
             
@@ -90,6 +102,13 @@ namespace GameLoop
         {
             _playerSpriteRenderer.enabled = true;
             _playerShooter.enabled = true;
+         
+            DOTween.To(() => _gameMusic.volume, x => _gameMusic.volume = x, 0, .7f).OnComplete(() =>
+            {
+                _gameMusic.clip = _gameplayMusic;
+                _gameMusic.Play();
+                DOTween.To(() => _gameMusic.volume, x => _gameMusic.volume = x, .7f, .7f);
+            });
             
             _parallaxController.SetState(true);
             _collectablesSpawnManager.SetSpawningState(true);
@@ -113,6 +132,8 @@ namespace GameLoop
         [Button]
         public void StopGame()
         {
+            DOTween.To(() => _gameMusic.volume, x => _gameMusic.volume = x, 0, 1f).SetUpdate(true);
+            
             _collectablesSpawnManager.SetSpawningState(false);
             _playerMovement.SetMovementLock(true);
             _enemySpawnerManager.SetSpawningState(false);
@@ -121,7 +142,7 @@ namespace GameLoop
             _objectsToEnableOnStop.ForEach(obj => obj.SetActive(true));
             
             _globalVolume.profile = _stopGameVolume;
-            DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 0, .3f);
+            DOTween.To(() => Time.timeScale, x => Time.timeScale = x, 0, 1f).SetUpdate(true);
         }
     }
 }

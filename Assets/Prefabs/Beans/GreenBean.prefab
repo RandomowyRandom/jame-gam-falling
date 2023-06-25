@@ -147,6 +147,7 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
+    - {fileID: 8300000, guid: ce43e3c051f219d44ac8c9e7459f8f80, type: 3}
     - {fileID: 381058146513443315}
     SerializedBytesString: 
     Prefab: {fileID: 0}
@@ -159,7 +160,7 @@ MonoBehaviour:
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 3
     - Name: 
       Entry: 7
       Data: 1|Collectables.Effects.RestoreStaminaCollectableEffect, Assembly-CSharp
@@ -171,10 +172,19 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 7
-      Data: 2|Collectables.Effects.DestroySelfCollectableEffect, Assembly-CSharp
-    - Name: _collider2D
+      Data: 2|Collectables.Effects.PlaySoundCollectableEffect, Assembly-CSharp
+    - Name: _sound
       Entry: 10
       Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 3|Collectables.Effects.DestroySelfCollectableEffect, Assembly-CSharp
+    - Name: _collider2D
+      Entry: 10
+      Data: 1
     - Name: 
       Entry: 8
       Data: 
