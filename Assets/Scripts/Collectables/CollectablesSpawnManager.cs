@@ -33,17 +33,16 @@ namespace Collectables
             ServiceLocator.ServiceLocator.Instance.Register<ICollectablesSpawnManager>(this);
         }
 
-        private void Start()
-        {
-        }
-
         private void OnDestroy()
         {
             ServiceLocator.ServiceLocator.Instance.Deregister<ICollectablesSpawnManager>();
         }
         
-        public void SetSpawningState(bool shouldSpawn)
+        public async void SetSpawningState(bool shouldSpawn)
         {
+            if(shouldSpawn)
+                await UniTask.Delay(TimeSpan.FromSeconds(2.8f));
+            
             _shouldSpawnCollectables = shouldSpawn;
             
             if (_shouldSpawnCollectables)
