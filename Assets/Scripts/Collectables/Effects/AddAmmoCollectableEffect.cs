@@ -18,7 +18,7 @@ namespace Collectables.Effects
             _playerAmmo ??= ServiceLocator.ServiceLocator.Instance.Get<IPlayerAmmo>();
         public UniTask ApplyEffect(CollectableBehaviour behaviour, CollectableEffectHandler handler)
         {
-            _playerAmmo.AddAmmo(_ammoAmount);
+            PlayerAmmo.AddAmmo(_ammoAmount);
             
             return UniTask.CompletedTask;
         }

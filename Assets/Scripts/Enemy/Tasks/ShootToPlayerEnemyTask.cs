@@ -21,6 +21,9 @@ namespace Enemy.Tasks
         private Transform PlayerTransform => _playerTransform ??= Object.FindObjectOfType<PlayerMovement>().transform;
         public UniTask<EnemyTaskResult> Execute(EnemyBehaviour behaviour)
         {
+            if(behaviour == null)
+                return UniTask.FromResult(EnemyTaskResult.Break);
+            
             var direction = (PlayerTransform.position - behaviour.transform.position).normalized;
             
             var bullet = Object.Instantiate(_bulletPrefab, behaviour.transform.position, Quaternion.identity);

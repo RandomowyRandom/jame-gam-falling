@@ -14,6 +14,9 @@ GameObject:
   - component: {fileID: 1877539753228204774}
   - component: {fileID: 2427774778957467337}
   - component: {fileID: 685937177718496946}
+  - component: {fileID: 7852922660456952058}
+  - component: {fileID: 1205880631701601599}
+  - component: {fileID: -2508139566017158290}
   m_Layer: 0
   m_Name: Butterfly
   m_TagString: Untagged
@@ -276,3 +279,79 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _destroyOnCollision: 0
   <Damage>k__BackingField: 1
+--- !u!50 &7852922660456952058
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1877539753228204770}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &1205880631701601599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1877539753228204770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b49e5dbc8094611a51713f2a9b2bb66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  _onCollisionEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -2508139566017158290}
+        m_TargetAssemblyTypeName: Enemy.EnemyHealth, Assembly-CSharp
+        m_MethodName: OnPlayerBulletEnter
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onCollisionExit:
+    m_PersistentCalls:
+      m_Calls: []
+  _onCollisionStay:
+    m_PersistentCalls:
+      m_Calls: []
+  _includeTriggers: 1
+--- !u!114 &-2508139566017158290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1877539753228204770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f956c8a4106041d0a5e89d1d71c9d0d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

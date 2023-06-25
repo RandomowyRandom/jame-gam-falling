@@ -4,6 +4,7 @@ using Collectables.Abstraction;
 using GameLoop.Abstraction;
 using Parallax.Abstraction;
 using Player.Abstraction;
+using Player.Shooter;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -24,6 +25,8 @@ namespace GameLoop
         private IParallaxController _parallaxController;
         private ICollectablesSpawnManager _collectablesSpawnManager;
         private IPlayerMovement _playerMovement;
+        
+        private PlayerShooter _playerShooter;
 
         private void Awake()
         {
@@ -35,7 +38,8 @@ namespace GameLoop
             _parallaxController = ServiceLocator.ServiceLocator.Instance.Get<IParallaxController>();
             _collectablesSpawnManager = ServiceLocator.ServiceLocator.Instance.Get<ICollectablesSpawnManager>();
             _playerMovement = ServiceLocator.ServiceLocator.Instance.Get<IPlayerMovement>();
-
+            _playerShooter = _playerSpriteRenderer.GetComponent<PlayerShooter>();
+            
             OnBeforeGameStart();
         }
 
@@ -48,6 +52,7 @@ namespace GameLoop
         public void OnBeforeGameStart()
         {
             _playerSpriteRenderer.enabled = false;
+            _playerShooter.enabled = false;
             
             _parallaxController.SetState(false);
             _collectablesSpawnManager.SetSpawningState(false);
@@ -58,6 +63,7 @@ namespace GameLoop
         public void StartGame()
         {
             _playerSpriteRenderer.enabled = true;
+            _playerShooter.enabled = true;
             
             _parallaxController.SetState(true);
             _collectablesSpawnManager.SetSpawningState(true);
