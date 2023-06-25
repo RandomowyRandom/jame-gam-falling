@@ -28,11 +28,15 @@ namespace Enemy.Spawning
         private void Awake()
         {
             ServiceLocator.ServiceLocator.Instance.Register<IEnemySpawnerManager>(this);
+            
+            EnemyHealth.OnEnemyDeath += RemoveFromSpawnedEnemies;
         }
         
         private void OnDestroy()
         {
             ServiceLocator.ServiceLocator.Instance.Deregister<IEnemySpawnerManager>();
+            
+            EnemyHealth.OnEnemyDeath -= RemoveFromSpawnedEnemies;
         }
 
         private async void HandleSpawning()
@@ -47,8 +51,6 @@ namespace Enemy.Spawning
                 
                 var enemy = Instantiate(randomEnemyPrefab, _spawnPoint.position, Quaternion.identity);
                 
-                enemy.OnEnemyDeath += RemoveFromSpawnedEnemies;
-                
                 _spawnedEnemies.Add(enemy);
             }
         }
@@ -56,7 +58,6 @@ namespace Enemy.Spawning
         private void RemoveFromSpawnedEnemies(EnemyHealth enemy)
         {
             _spawnedEnemies.Remove(enemy);
-            enemy.OnEnemyDeath -= RemoveFromSpawnedEnemies;
         }
 
         public void SetSpawningState(bool state)

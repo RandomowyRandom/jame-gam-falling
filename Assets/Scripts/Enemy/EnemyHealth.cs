@@ -5,7 +5,7 @@ namespace Enemy
 {
     public class EnemyHealth: MonoBehaviour
     {
-        public event Action<EnemyHealth> OnEnemyDeath;
+        public static event Action<EnemyHealth> OnEnemyDeath;
         
         public void OnPlayerBulletEnter(GameObject collision)
         {
