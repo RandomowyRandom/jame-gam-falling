@@ -9,7 +9,7 @@ namespace Player
 {
     public class PlayerHealth: MonoBehaviour, IPlayerHealth
     {
-        public event Action<int> OnHealthChanged;
+        public event Action<int, PlayerHealthChangeType> OnHealthChanged;
         public event Action OnPlayerDeath;
 
         public int CurrentHealth { get; private set; }
@@ -30,7 +30,7 @@ namespace Player
             CurrentHealth -= damage;
             CurrentHealth = Mathf.Clamp(CurrentHealth, 0, 3);
             
-            OnHealthChanged?.Invoke(CurrentHealth);
+            OnHealthChanged?.Invoke(CurrentHealth, PlayerHealthChangeType.Damage);
             
             if(CurrentHealth == 0)
                 OnPlayerDeath?.Invoke();
@@ -41,7 +41,7 @@ namespace Player
             CurrentHealth += health;
             CurrentHealth = Mathf.Clamp(CurrentHealth, 0, 3);
             
-            OnHealthChanged?.Invoke(CurrentHealth);
+            OnHealthChanged?.Invoke(CurrentHealth, PlayerHealthChangeType.Heal);
         }
 
         public void OnDamageSourceEnter(GameObject collision)

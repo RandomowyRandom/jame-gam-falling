@@ -355,3 +355,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f956c8a4106041d0a5e89d1d71c9d0d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _deathParticles: {fileID: 7065374335939937976, guid: d199830054a0a4c4686072cad743a620, type: 3}

@@ -41,7 +41,7 @@ namespace Collectables
         public async void SetSpawningState(bool shouldSpawn)
         {
             if(shouldSpawn)
-                await UniTask.Delay(TimeSpan.FromSeconds(2.8f));
+                await UniTask.Delay(TimeSpan.FromSeconds(4f));
             
             _shouldSpawnCollectables = shouldSpawn;
             
@@ -53,7 +53,6 @@ namespace Collectables
         {
             while (_shouldSpawnCollectables)
             {
-                var randomCollectableIndex = UnityEngine.Random.Range(0, _collectablesPrefabs.Count);
                 var randomCollectablePrefab = GetRandomCollectablePrefab();
                 var randomSpawnPointX = UnityEngine.Random.Range(_leftCornerSpawnPoint.position.x, _rightCornerSpawnPoint.position.x);
                 var randomSpawnPointY = UnityEngine.Random.Range(_leftCornerSpawnPoint.position.y, _rightCornerSpawnPoint.position.y);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Player;
 using Player.Abstraction;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,14 +26,14 @@ namespace UI
             _playerHealth.OnHealthChanged += UpdateUI;
         }
 
+        private void UpdateUI(int amount, PlayerHealthChangeType type)
+        {
+            SetIndicators(amount);
+        }
+
         private void OnDestroy()
         {
             _playerHealth.OnHealthChanged -= UpdateUI;
-        }
-
-        private void UpdateUI(int amount)
-        {
-            SetIndicators(amount);
         }
 
         private void SetIndicators(int amount)

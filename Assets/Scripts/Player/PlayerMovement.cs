@@ -19,6 +19,8 @@ namespace Player
         [SerializeField]
         private float _movementSpeed = 1f;
         
+        public event Action OnPlayerDash;
+
         private Rigidbody2D _rigidbody2D;
         private SpriteRenderer _spriteRenderer;
         
@@ -58,7 +60,7 @@ namespace Player
         {
             ServiceLocator.ServiceLocator.Instance.Deregister<IPlayerMovement>();
         }
-        
+
         public void SetMovementLock(bool isLocked)
         {
             enabled = !isLocked;
@@ -75,9 +77,12 @@ namespace Player
                 return;
             
             var result = TryDash();
+
+            if (!result) 
+                return;
             
-            if (result)
-                _playerStamina.DrainStamina();
+            _playerStamina.DrainStamina();
+            OnPlayerDash?.Invoke();
         }
 
         private void HandlePlayerRotation()
