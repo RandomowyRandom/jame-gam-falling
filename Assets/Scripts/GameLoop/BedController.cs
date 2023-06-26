@@ -1,6 +1,7 @@
 ﻿using System;
 using Collectables;
 using GameLoop.Abstraction;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -42,6 +43,12 @@ namespace GameLoop
             
             _gameLoopManager.StartGame();
             Destroy(gameObject, 2f);
+        }
+
+        [UsedImplicitly]
+        public void PlaySound(AudioClip clip)
+        {
+            AudioSource.PlayClipAtPoint(clip, transform.position);
         }
     }
 }
